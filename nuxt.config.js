@@ -20,5 +20,11 @@ module.exports = {
   */
   build: {
     vendor: ['axios']
+  },
+  modules: ['@nuxtjs/markdownit'],
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true
   }
 };
