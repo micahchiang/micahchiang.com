@@ -1,3 +1,7 @@
+const entriesData = require('./static/entriesinfo.json');
+const routerBase =
+  process.env.DEPLOY_ENV === 'GH_PAGES' ? { router: { base: '/site/' } } : {};
+
 module.exports = {
   /*
   ** Headers of the page
@@ -26,5 +30,13 @@ module.exports = {
     preset: 'default',
     linkify: true,
     breaks: true
-  }
+  },
+  generate: {
+    routes: function() {
+      return entriesData.entries.map(entry => {
+        return '/entries/' + entry.slug;
+      });
+    }
+  },
+  routerBase
 };
