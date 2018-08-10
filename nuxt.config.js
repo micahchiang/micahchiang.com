@@ -1,8 +1,7 @@
 require('dotenv').config();
 
 const entriesData = require('./static/entriesinfo.json');
-const routerBase =
-  process.env.DEPLOY_ENV === 'GH_PAGES' ? { router: { base: '/site/' } } : {};
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? '/site/' : '/';
 
 module.exports = {
   /*
@@ -40,5 +39,7 @@ module.exports = {
       });
     }
   },
-  routerBase
+  router: {
+    base: routerBase
+  }
 };
