@@ -32,10 +32,10 @@
 
 <style scoped>
 main {
-  padding: 2 0 rem;
   overflow: scroll;
 }
 ul {
+  padding: 0;
   list-style: none;
 }
 .entry__list-item {

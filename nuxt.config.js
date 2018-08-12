@@ -8,7 +8,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'site',
+    title: 'Micah Chiang - the web and other things',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -20,7 +20,7 @@ module.exports = {
   /*
   ** Customize the progress bar color
   */
-  loading: { color: '#506987' },
+  loading: { color: '#ffffff' },
   /*
   ** Build configuration
   */
