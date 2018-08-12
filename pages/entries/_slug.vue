@@ -1,5 +1,14 @@
 <template>
-    <div v-html="post"></div>
+    <main>
+        <div class="home__link-container">
+            <nuxt-link to="/">Return Home</nuxt-link>
+        </div>
+        <div id="wrapper" v-html="post">
+        </div>
+        <div class="home__link-container">
+            <nuxt-link to="/">Return Home</nuxt-link>
+        </div>
+    </main>
 </template>
 
 <script>
@@ -19,4 +28,33 @@ export default {
     }
 }
 </script>
+
+<style>
+#wrapper {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 850px;
+  padding: 2rem;
+}
+
+hr {
+  border-top: 2px solid #506987;
+}
+
+pre {
+  background-color: #b7c3d0;
+  color: #ffffff;
+  padding: 1rem;
+  overflow: scroll;
+}
+
+.home__link-container {
+  text-align: right;
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+</style>
+
 

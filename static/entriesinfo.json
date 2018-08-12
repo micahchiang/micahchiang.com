@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "id": "6",
+      "title": "A Sample Blogpost",
+      "createdAt": "08-11-2018",
+      "slug": "blogpost"
+    },
+    {
       "id": "1",
       "title": "This is my first post",
       "createdAt": "08-09-2018",
