@@ -31,7 +31,8 @@ module.exports = {
   markdownit: {
     preset: 'default',
     linkify: true,
-    breaks: true
+    breaks: true,
+    injected: true
   },
   generate: {
     routes: function() {
