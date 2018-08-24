@@ -48,6 +48,10 @@ pre {
   overflow: scroll;
 }
 
+p {
+  margin: 1rem 0;
+}
+
 .home__link-container {
   text-align: right;
   width: 100%;

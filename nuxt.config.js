@@ -32,7 +32,9 @@ module.exports = {
     preset: 'default',
     linkify: true,
     breaks: true,
-    injected: true
+    typographer: true,
+    injected: true,
+    use: ['markdown-it-container', 'markdown-it-attrs']
   },
   generate: {
     routes: function() {

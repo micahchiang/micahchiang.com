@@ -55,5 +55,8 @@ ul {
 .entry__link-header {
   font-weight: 200;
 }
+p {
+  margin: 0;
+}
 </style>
 
