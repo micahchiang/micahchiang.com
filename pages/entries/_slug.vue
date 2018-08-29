@@ -45,6 +45,7 @@ pre {
   background-color: #b7c3d0;
   color: #ffffff;
   padding: 1rem;
+  margin: 1rem 0;
   overflow: scroll;
 }
 
