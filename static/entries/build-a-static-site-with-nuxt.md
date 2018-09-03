@@ -45,3 +45,7 @@ This article will reference several different directories, so it's worth briefly
 - **plugins** - Any sort of plugins you'd want to run before instantiating the root application would be put here.
 
 The above is just a brief rundown of some of the directories we will be addressing later on. You'll notice that some directories aren't mentioned, and that's because they aren't used much in this particular project. For more information, feel free to check out the official Nuxt documentation [here](https://nuxtjs.org/guide).
+
+### Displaying Blog Entries on a Page
+
+In Nuxt, each page that is shown to a user is created in the 'pages' directory. These pages are comprised of smaller, potentially reusuable components which are built in the 'components' directory. For our project, we will create a page called index.vue.
