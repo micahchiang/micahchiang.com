@@ -11,7 +11,7 @@ There are several benefits of opting for a statically generated site including:
 1. Security - All generated files are just flat HTML files with css and javascript. When a user requests a page, all they are sent is that flat file. Because there is no build process for the requested asset, common security risks such as cross site scripting become non-factors.
 2. Speed - Since there is no processing involved, the server hosting all the static files can just send back a response immediately containing the static file requested.
 
-In this article we'll go through how to build a personal blog using some of the features Nuxt has to offer. Once we've finished building our blog site, we'll walk through how to deploy it to Github Pages. By the end of our time together, my hope is that you'll have learned a little bit more about Nuxt and Vue, and the process of deploying to Github pages.
+In this article we'll go through how to build a personal blog using some of the features Nuxt has to offer. Once we've finished building our blog site, we'll walk through how to deploy it to Github Pages. Please note: this article assumes a working knowledge of Vue itself. If you're unfamiliar with Vue, the [official docs](https://vuejs.org/v2/guide/) are a great place to start. By the end of our time together, my hope is that you'll have learned a little bit more about Nuxt, and the process of deploying to Github pages.
 
 ### Installing Nuxt
 
@@ -71,6 +71,47 @@ export default {
 </script>
 ```
 
-If you've used Vue before then all of this looks pretty standard except potentially one thing and that is the `fetch` method. Nuxt gives it to us for free and it's a way to set store data before components in the **pages** directory are loaded. Perhaps an easier, more familiar way to think about it is as a life-cycle hook for Nuxt, similar to how Vue itself has it's own life-cycle hooks. We won't go into much more depth about `fetch` here, but if you can read more about it [in the Nuxt docs](https://nuxtjs.org/api/pages-fetch).
+If you've used Vue before then all of this looks pretty standard except potentially one thing and that is the `fetch` method. Nuxt gives it to us for free and it's a way to set store data before components in the **pages** directory are loaded. Perhaps an easier, more familiar way to think about it is as a life-cycle hook for Nuxt, similar to how Vue itself has it's own life-cycle hooks. Within the `fetch` method, we're dispatching a Vuex store action, similar to how you might do so in a regular Vue application. We won't go into much more depth about `fetch` here, but if you can read more about it [in the Nuxt docs](https://nuxtjs.org/api/pages-fetch).
 
 What we will talk more about is what goes on in `EntriesComponent`.
+
+As mentioned earlier, pages are comprised of components built in the components directory. In the previous step, we built our index.vue page and imported EntriesComponent.vue into it for use. Really the one thing EntriesComponent.vue does is display our data by looping through it using the common `v-for` technique provided by Vue:
+
+```javascript
+<template>
+<main>
+    <ul>
+        <li
+            class="entry__list-item"
+            v-for="entry in entries"
+            :key="entry.id"
+        >
+            <nuxt-link
+                class="entry__link"
+                :to="'/entries/'+entry.slug"
+            >
+                <h2 class="entry__link-header">
+                    {{ entry.title }}
+                </h2>
+            </nuxt-link>
+            <p>{{entry.createdAt}}</p>
+        </li>
+    </ul>
+</main>
+</template>
+
+<script>
+    import {mapState} from 'vuex';
+    export default {
+        name: 'EntriesComponent',
+        computed: mapState([
+            "entries"
+        ])
+    }
+</script>
+```
+
+Two things to mention:
+
+1. `<nuxt-link></nuxt-link>` : this component is provided by Nuxt as a means to navigate between different pages built in the Pages directory. You'll notice in the `:to` attribute a path has been added that corresponds to the page we're trying to navigate to.
+2. We have implemented `mapState` which is given to us by Vuex, and mapped it to this vue instance's `computed` property.
