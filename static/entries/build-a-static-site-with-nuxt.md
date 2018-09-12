@@ -48,4 +48,29 @@ The above is just a brief rundown of some of the directories we will be addressi
 
 ### Displaying Blog Entries on a Page
 
-In Nuxt, each page that is shown to a user is created in the 'pages' directory. These pages are comprised of smaller, potentially reusuable components which are built in the 'components' directory. For our project, we will create a page called index.vue.
+In Nuxt, each page that is shown to a user is created in the 'pages' directory. These pages are comprised of smaller, potentially reusuable components which are built in the 'components' directory. For our project, we will create a page called index.vue, and populate it with a component called EntriesComponent.vue:
+
+```javascript
+<template>
+  <div>
+    <entries-component> </entries-component>
+  </div>
+</template>
+
+<script>
+import EntriesComponent from '~/components/EntriesComponent';
+
+export default {
+    components: {
+        EntriesComponent,
+    },
+    async fetch( {store} ) {
+        await store.dispatch('LOAD_ENTRIES');
+    }
+}
+</script>
+```
+
+If you've used Vue before then all of this looks pretty standard except potentially one thing and that is the `fetch` method. Nuxt gives it to us for free and it's a way to set store data before components in the **pages** directory are loaded. Perhaps an easier, more familiar way to think about it is as a life-cycle hook for Nuxt, similar to how Vue itself has it's own life-cycle hooks. We won't go into much more depth about `fetch` here, but if you can read more about it [in the Nuxt docs](https://nuxtjs.org/api/pages-fetch).
+
+What we will talk more about is what goes on in `EntriesComponent`.
