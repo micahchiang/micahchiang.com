@@ -115,3 +115,56 @@ Two things to mention:
 
 1. `<nuxt-link></nuxt-link>` : this component is provided by Nuxt as a means to navigate between different pages built in the Pages directory. You'll notice in the `:to` attribute a path has been added that corresponds to the page we're trying to navigate to.
 2. We have implemented `mapState` which is given to us by Vuex, and mapped it to this vue instance's `computed` property.
+
+Up until this point, we've been talking about the steps required to display a list of blog entries on a page. All of the things mentioned are pieces you'd typically find in a normal Vue project: component construction, Vuex store interaction, etc. With the introduction of EntriesComponent.vue, now is an appropriate time to move from the process of displaying things on a page, and talk a little more specifically about what goes on in our Vuex store, and how Nuxt handles dynamic pages and routes.
+
+### Presenting Individual Entries
+
+Earlier we highlighted `<nuxt-link></nuxt-link>` which allowed us to created routes to each of our entries displayed. You'll notice the path populating the `:to` attribue is `:to="'/entries/'+entry.slug"`. This tips us off to the fact that behind the scenes, Nuxt is creating a dynamic route for each entry we have. Let's create the page that will present each individual entry to the user. In the **pages** directory, we'll create a new directory called entries, enter into it, and create a file called `_slug.vue`. If you've used dynamic routes in Vue Router before, the structure of creating a folder in the pages directory and then adding a file prefixed by an underscore in said directory will yield a familiar result when Nuxt finishes generating the router:
+
+```javascript
+router: {
+  routes: [
+    {
+      name: 'entries-slug',
+      path: '/entries/:slug?',
+      component: 'pages/entries/_slug.vue'
+    }
+  ];
+}
+```
+
+So we've created the page that's going to display an individual entry when a user clicks on a link from the entries list. Next we'll take a look at what goes on in there, and that will give us the final piece we need to jump into our Vuex store. In the `_slug.vue` file, we'll add this code:
+
+```javascript
+<template>
+    <main>
+        <div class="home__link-container">
+            <nuxt-link to="/">Return Home</nuxt-link>
+        </div>
+        <div id="wrapper" v-html="post">
+        </div>
+        <div class="home__link-container">
+            <nuxt-link to="/">Return Home</nuxt-link>
+        </div>
+    </main>
+</template>
+
+<script>
+import {mapGetters} from 'vuex';
+export default {
+    data() {
+        return {}
+    },
+    async fetch({store, route}) {
+        await store.dispatch('LOAD_ENTRY', route.params.slug);
+    },
+    computed: {
+        post() {
+            let entry = this.$store.state.entry;
+            return require(`~/static/entries/${entry}.md`);
+        }
+    }
+}
+</script>
+```
