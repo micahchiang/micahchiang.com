@@ -1,6 +1,6 @@
 # How To Build A Statically Generated Blog With Nuxt And Deploy It To Github Pages
 
-Written on August 22nd in the year 2018.
+Written on September 24th in the year 2018.
 
 ---
 
@@ -11,7 +11,7 @@ There are several benefits of opting for a statically generated site including:
 1. Security - All generated files are just flat HTML files with css and javascript. When a user requests a page, all they are sent is that flat file. Because there is no build process for the requested asset, common security risks such as cross site scripting become non-factors.
 2. Speed - Since there is no processing involved, the server hosting all the static files can just send back a response immediately containing the static file requested.
 
-In this article we'll go through how to build a personal blog using some of the features Nuxt has to offer. Once we've finished building our blog site, we'll walk through how to deploy it to Github Pages. Please note: this article assumes a working knowledge of Vue itself. If you're unfamiliar with Vue, the [official docs](https://vuejs.org/v2/guide/) are a great place to start. By the end of our time together, my hope is that you'll have learned a little bit more about Nuxt, and the process of deploying to Github pages.
+In this article we'll go through how to build a personal blog using some of the features Nuxt has to offer. Once we've finished building our blog site, we'll walk through how to deploy it to Github Pages. Please note: this article assumes a working knowledge of Vue itself as well as Vuex. If you're unfamiliar with Vue, the [official docs](https://vuejs.org/v2/guide/) are a great place to start. By the end of our time together, my hope is that you'll have learned a little bit more about Nuxt, and the process of deploying to Github pages.
 
 ### Installing Nuxt
 
@@ -168,3 +168,138 @@ export default {
 }
 </script>
 ```
+
+Initially it may look like there are some unfamiliar features in this file, but upon closer inspection, we realize that all of what is in here we have most likely seen before. We used the `fetch` method Nuxt provides earlier in our EntriesComponent. We've already implemented <nuxt-link> for routing and we've talked about dispatching store actions. So really, the only thing that needs mentioning here is the computed property we've created, `post()`. Assuming you have used Vue computed properties before, all we are doing in here is retrieving the name of the entry we want from the store which is set asynchronously in the fetch method. Once we've retrieved that, we just return a require statement containing the path to our static entry. Finally, we use the Vue attribute, `v-html` to bind the content of the wrapper div to the value of the entry we've loaded in `post()`.
+
+### Maintaining State in Vuex
+
+Now that we have talked about all the pieces that go into displaying an individual entry selected from a list, let's talk about how we manage the state of our application.
+
+In Vue, the suggested way of maintaining state is to use Vuex. We won't go into much depth regarding what exactly Vuex is. Deep down it really is just a glorified object that comes bundled with a set of tools that allows you the developer a simple, predictable, way of maintaining and managing the state of your application. If you'd like to read more about it, feel free to [check out the docs](https://vuex.vuejs.org).
+
+Earlier when we created the file structure for our project, one of the directories we generated was called 'store'. Nuxt provides us with this directory should our project require the use of a state management tool (Vuex), all we have to do is add an `index.js` to it. So, let's add that to our store directory and populate it with this:
+
+```javascript
+import Vuex from 'vuex';
+import entriesData from '~/static/entriesinfo.json';
+
+const store = () => {
+  return new Vuex.Store({
+    state: {
+      entries: [],
+      entry: ''
+    },
+    mutations: {
+      setEntries(state, data) {
+        state.entries = data;
+      },
+      setEntry(state, name) {
+        state.entry = name;
+      }
+    },
+    actions: {
+      LOAD_ENTRIES({ commit }) {
+        const entries = entriesData.entries;
+        commit('setEntries', entries);
+      },
+      LOAD_ENTRY({ commit }, entryName) {
+        commit('setEntry', entryName);
+      }
+    }
+  });
+};
+
+export default store;
+```
+
+We've seen a couple of these things in action already in components mentioned earlier, but let's walk through each bit and talk about what they do.
+
+1. LOAD_ENTRIES: This is an action we've created to help us load the list of our entries. It really is just a function which loads entries from our json data file. Once it has those, it commits a mutation called `setEntries` which in turn sets our store entries array to the data we've retrieved.
+2. LOAD_ENTRY: This action takes an entry name that we retrieve from the route params given to use by Vue. It then commits a mutation called `setEntry` that just sets our store 'entry' key to the value of our entry name.
+
+With that, we are done with the majority of our project. In fact, there are only a couple more things that need to be mentioned before we deploy to github pages. Let's go over those things now.
+
+### Managing the Metadata of Our Entries
+
+When talking about state management, I mentioned a json data file. To keep things simple, all we will do is create a json file in our static directory, and populate it with the metadata of each entry we create. There are definitely other ways to do this, but this works for now. Our json file, named "entriesinfo.json" will maintain this structure:
+
+```javascript
+{
+  "entries": [
+    {
+      "id": "yourID",
+      "title": "yourTitle",
+      "createdAt": "theDate",
+      "slug": "yourSlug"
+    },
+  ]
+}
+```
+
+This is just regular json, and shouldn't need much clarification. Certainly, you can choose your own property names, just be sure to update them wherever they are used in your application.
+
+### Rendering Markdown as HTML
+
+For this piece, we've used a module recommended by Nuxt, [markdownit-loader](https://github.com/nuxt-community/markdownit-loader). Using this module allows us to bind to v-html, similar to what we did in our `_slug.vue` page. Modules are loaded and configured in the nuxt.config.js file. For this project, we've stuck with defaults for most options:
+
+```javascript
+/// nuxt.config.js
+module.exports = {
+  /// other configs,
+  modules: ['@nuxtjs/markdownit'],
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    typographer: true,
+    injected: true,
+    use: ['markdown-it-container', 'markdown-it-attrs']
+  }
+};
+```
+
+### Configuring Routes for Static Rendering
+
+By default, Nuxt does not recognize dynamic routes when running `nuxt generate`. In order to ensure dynamic routes are generated properly, a 'routes' function must be passed to the generate attribute located in the nuxt.config.js file:
+
+```javascript
+/// nuxt.config.js
+module.exports = {
+  /// other configs,
+  generate: {
+    routes: function() {
+      return entriesData.entries.map(entry => {
+        return '/entries/' + entry.slug;
+      });
+    }
+  }
+};
+```
+
+Typically when deploying to github pages you will need to set `/<repo-name>` as the router base. However, since we are going to be using our own domain name, leaving router base as it's default `/` is fine.
+
+### Configuring Github Pages with a Custom Domain
+
+We have one last step to take care of before we finally push our code up to github pages. Typically a github pages site will have a URL that looks something like https://<username>.github.io. That's fine, but in order to truly make your site your own, you really should have a custom domain point to whichever repo your project lives in. So, instead of https://<username>.github.io, you'll have customDomain.com. Lets go through the steps needed to do this now:
+
+1. Purchase a custom domain and register it with a DNS provider (godaddy, google domains, etc.).
+2. Add the custom domain to the github repository you want to use in that repository's settings. Settings > GitHub Pages > Custom domain.
+3. In your DNS provider's control panel, you should have the option to configure an `A` record for your domain. Github provides four IP addresses when setting up a custom domain to point to github pages repository: 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153. Set up an `A` recrod for each of these. NOTE: these IP addresses may potentially change, so check [this page](https://help.github.com/articles/setting-up-an-apex-domain/) for the current ones, as well as a more detailed guide about setting up `A` records with github pages.
+
+Alright, let's talk about deploying.
+
+### Deploying Your Static Site to Github Pages
+
+Finally, we're ready to deploy our static site to Github Pages. To makes things a little easier, we'll use a node module that allows us to deploy directly from the command line. Go ahead and install the push-dir package:
+
+```javascript
+npm install push-dir --save-dev
+```
+
+Since we are deploying from the command line, we need to add a script that will allow us to do so in our package.json: `"deploy":"push-dir --dir=dist --branch-gh-pages --cleanup"`.
+
+Now that we have our deploy script ready, all we need to do is first generate our static site by running `npm run generate`. Once this is done, we can run our deploy script and push our generated static site up to github pages. For a more in-depth walkthrough of the deploy process, feel free to check out the [Nuxt faq on deployment](https://nuxtjs.org/faq/github-pages).
+
+### Closing Thoughts
+
+And we're done! With the last step of pushing to GitHub Pages complete, we've officially finished creating our static website. Though this was a relatively simple example of using nuxt to create a static site, I hope you'll find that it covered some topics and processes that can be extended to more advanced use cases. Thanks for reading!
