@@ -10,13 +10,13 @@ In many ways I felt like 2018 never really got started. I think one of the bigge
 
 ### Things That Didn't Work
 
-1.) Doing more than 1 set of '100 Days of Code.' I finished one round of this early in the year, from January to mid April, and by the time it was over I was pretty burnt. I tried to do another round later in the year, but just couldn't do it. Spending a minimum of a hour a day writing code that is not work related for 100 days is much more exhausting than I first anticipated. 
+1. Doing more than 1 set of '100 Days of Code.' I finished one round of this early in the year, from January to mid April, and by the time it was over I was pretty burnt. I tried to do another round later in the year, but just couldn't do it. Spending a minimum of a hour a day writing code that is not work related for 100 days is much more exhausting than I first anticipated. 
 
-2.) Spending 15 minutes per day studying mandarin. I started this and lasted about 6 months but eventually broke down. I think I eventually hit a wall and just wasn't able to consistently keep up after that. I think a course more focused with clear goals is something that would have helped. 
+2. Spending 15 minutes per day studying mandarin. I started this and lasted about 6 months but eventually broke down. I think I eventually hit a wall and just wasn't able to consistently keep up after that. I think a course more focused with clear goals is something that would have helped. 
 
-3.) Reading one book per month. Yeah...I think the biggest thing I learned about myself with this is that I really need physical books to read effectively. For me, it's just too easy to get distracted when trying to read E-books. 
+3. Reading one book per month. Yeah...I think the biggest thing I learned about myself with this is that I really need physical books to read effectively. For me, it's just too easy to get distracted when trying to read E-books. 
 
-4.) Launching three personal projects. Initially I thought this was doable if these projects were each given four months of time. Four months is still pretty reasonable in my mind, but after the first one I felt pretty burned out. I still managed to get two off the ground though. This blog, and another project called [dailyhoops.io](dailyhoops.io/#/). 
+4. Launching three personal projects. Initially I thought this was doable if these projects were each given four months of time. Four months is still pretty reasonable in my mind, but after the first one I felt pretty burned out. I still managed to get two off the ground though. This blog, and another project called [dailyhoops.io](http://dailyhoops.io/#/). 
 
 ### Things That Did Work
 
