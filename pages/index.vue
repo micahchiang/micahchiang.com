@@ -6,18 +6,19 @@
 </template>
 
 <script>
-import EntriesComponent from '~/components/EntriesComponent';
-import HeaderComponent from '~/components/HeaderComponent';
+import EntriesComponent from "~/components/EntriesComponent";
+import HeaderComponent from "~/components/HeaderComponent";
 
 export default {
   components: {
     EntriesComponent,
     HeaderComponent
   },
-  async fetch( {store} ) {
-    await store.dispatch('LOAD_ENTRIES');
-  }
-}
+  async fetch({ store }) {
+    await store.dispatch("LOAD_ENTRIES");
+  },
+  methods: {}
+};
 </script>
 
 <style scoped>
