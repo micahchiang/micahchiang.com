@@ -1,30 +1,25 @@
-import Vuex from 'vuex';
 import entriesData from '~/static/entriesinfo.json';
 
-const store = () => {
-  return new Vuex.Store({
-    state: {
-      entries: [],
-      entry: ''
-    },
-    mutations: {
-      setEntries(state, data) {
-        state.entries = data;
-      },
-      setEntry(state, name) {
-        state.entry = name;
-      }
-    },
-    actions: {
-      LOAD_ENTRIES({ commit }) {
-        const entries = entriesData.entries;
-        commit('setEntries', entries);
-      },
-      LOAD_ENTRY({ commit }, entryName) {
-        commit('setEntry', entryName);
-      }
-    }
-  });
-};
+export const state = () => ({
+  entries: [],
+  entry: ''
+});
 
-export default store;
+export const mutations =  {
+  setEntries(state, data) {
+    state.entries = data;
+  },
+  setEntry(state, name) {
+    state.entry = name;
+  }
+}
+
+export const actions = {
+  LOAD_ENTRIES({commit}) {
+    const entries = entriesData.entries;
+    commit('setEntries', entries);
+  },
+  LOAD_ENTRY({commit}, entryName) {
+    commit('setEntry', entryName)
+  }
+}

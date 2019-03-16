@@ -12,3 +12,5 @@ dist
 
 #env
 .env
+
+yarn-error.log

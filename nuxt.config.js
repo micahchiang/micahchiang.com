@@ -25,7 +25,20 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: ['axios']
+    vendor: ['axios'],
+    html: {
+      minify: {
+        collapseBooleanAttributes: true,
+        decodeEntities: true,
+        minifyCSS: true,
+        minifyJS: true,
+        processConditionalComments: true,
+        removeEmptyAttributes: true,
+        removeRedundantAttributes: true,
+        trimCustomFragments: true,
+        useShortDoctype: true
+      }
+    }
   },
   modules: ['@nuxtjs/markdownit'],
   markdownit: {

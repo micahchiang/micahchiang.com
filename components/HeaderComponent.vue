@@ -1,38 +1,66 @@
 <template>
-    <header>
-        <img class="bio__img" src="~/assets/mc_roller_coaster.jpg">
-        <section class="header__info">
-            <h2>
-                Hey there, I'm Micah.
-            </h2>
-            <h2>
-                I sometimes write about web development and other things.
-            </h2>
-            <h2>
-                I like video games and Dyson vacuums. 
-            </h2>
-        </section>
-        <section class="header__social-container">
-            <a href="https://www.github.com/micahchiang" target="_blank">
-                <img class="social-link" src="~/assets/github.svg" alt="github">
-            </a>
-            <a href="https://www.linkedin.com/in/micahkchiang" target="_blank">
-                <img class="social-link" src="~/assets/linkedin.png" alt="linkedin">
-            </a>
-            <a href="https://www.instagram.com/micahkchiang" target="_blank">
-                <img class="social-link" src="~/assets/instasvg.svg" alt="instagram">
-            </a>
-            <a href="mailto:micahkchiang@gmail.com">
-                <img class="social-link" src="~/assets/email.svg" alt="email">
-            </a>
-        </section>
-    </header>
+  <header>
+    <img
+      class="bio__img"
+      src="~/assets/mc_roller_coaster-min.jpg"
+    >
+    <section class="header__info">
+      <h2>
+        Hey there, I'm Micah.
+      </h2>
+      <h2>
+        I sometimes write about web development and other things.
+      </h2>
+      <h2>
+        I like video games and Dyson vacuums.
+      </h2>
+    </section>
+    <section class="header__social-container">
+      <a
+        href="https://www.github.com/micahchiang"
+        target="_blank"
+      >
+        <img
+          class="social-link"
+          src="~/assets/github.svg"
+          alt="github"
+        >
+      </a>
+      <a
+        href="https://www.linkedin.com/in/micahkchiang"
+        target="_blank"
+      >
+        <img
+          class="social-link"
+          src="~/assets/linkedin.png"
+          alt="linkedin"
+        >
+      </a>
+      <a
+        href="https://www.instagram.com/micahkchiang"
+        target="_blank"
+      >
+        <img
+          class="social-link"
+          src="~/assets/instasvg.svg"
+          alt="instagram"
+        >
+      </a>
+      <a href="mailto:micahkchiang@gmail.com">
+        <img
+          class="social-link"
+          src="~/assets/email.svg"
+          alt="email"
+        >
+      </a>
+    </section>
+  </header>
 </template>
 
 <script>
-    export default {
-        name: 'HeaderComponent'
-    }
+export default {
+  name: "HeaderComponent"
+};
 </script>
 
 <style scoped>
