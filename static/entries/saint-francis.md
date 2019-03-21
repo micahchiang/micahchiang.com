@@ -21,4 +21,4 @@ it is in pardoning that we are pardoned,
 and it is in dying that we are born to eternal life.
 Amen.
 
-Regardless of your views or beliefs, it's easy to agree that most, or all, of what Saint Francis mentions above is inherently good. In asking myself the questions "how can I become a better person?" or "How can I become a better husband?" or "how can I become a better teammate to my co-workers?", Saint Francis offers a simple yet incredibly profound and hard-to-achieve answer: be selfless and give of yourself to doing good. The world becomes net positive we commit to being for one another.
+Regardless of your views or beliefs, it's easy to agree that most, or all, of what Saint Francis mentions above is inherently good. In asking myself the questions "how can I become a better person?" or "How can I become a better husband?" or "how can I become a better teammate to my co-workers?", Saint Francis offers a simple yet incredibly profound and hard-to-achieve answer: be selfless and give of yourself to doing good. The world becomes net positive when we commit to being for one another.
