@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@nuxtjs/markdownit": "^1.2.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "dotenv": "^7.0.0",
     "markdown-it": "^8.4.2",
     "markdown-it-attrs": "^2.3.1",
