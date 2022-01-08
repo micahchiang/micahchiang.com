@@ -1,16 +1,6 @@
-# dependencies
-node_modules
+node_modules/
+.cache/
+public
 
-# logs
-npm-debug.log
-
-# Nuxt build
-.nuxt
-
-# Nuxt generate
-dist
-
-#env
-.env
-
-yarn-error.log
+# Local Netlify folder
+.netlify
