@@ -27,5 +27,14 @@ module.exports = {
         },
       },
     },
+    'gatsby-plugin-image',
+    'gatsby-transformer-remark',
+    {
+      resolve: 'gatsby-source-sanity',
+      options: {
+        projectId: 'jhye3fuy',
+        dataset: 'production',
+      },
+    },
   ],
 };
