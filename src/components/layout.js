@@ -26,7 +26,7 @@ export default function Layout({
     <>
       <Seo title={title} description={description} path={path} />
       <header className={header}>
-        <Link to="/">{meta.title}</Link>
+        <Link to="/">Home</Link>
         <nav>
           <Link to="/about">About</Link>
         </nav>

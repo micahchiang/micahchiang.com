@@ -19,6 +19,7 @@ export default function SanityPost({ data }) {
     <Layout title={post.title}>
       <h1>{post.title}</h1>
       <small>published {post.publishedAt}</small>
+      <hr />
       <section dangerouslySetInnerHTML={{ __html: micromark(post.body) }} />
     </Layout>
   );
