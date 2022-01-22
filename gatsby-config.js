@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://tbd.tld',
+    siteUrl: 'https://micahchiang-blog.netlify.app/',
     title: 'Micah Chiang personal site',
     description: 'Thoughts on the web and other things',
   },
