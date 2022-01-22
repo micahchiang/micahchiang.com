@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import { micromark } from 'micromark';
 import Layout from '../../components/layout.js';
 
@@ -21,6 +21,7 @@ export default function SanityPost({ data }) {
       <small>published {post.publishedAt}</small>
       <hr />
       <section dangerouslySetInnerHTML={{ __html: micromark(post.body) }} />
+      <Link to="/">&larr; back</Link>
     </Layout>
   );
 }
