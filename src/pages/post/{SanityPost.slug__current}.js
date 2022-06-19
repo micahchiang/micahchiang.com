@@ -7,7 +7,7 @@ export const query = graphql`
   query SanityPost($id: String!) {
     sanityPost(id: { eq: $id }) {
       title
-      publishedAt(fromNow: true)
+      publishedAt(formatString: "MMMM DD, YYYY")
       body
     }
   }

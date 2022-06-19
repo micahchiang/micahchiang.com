@@ -10,7 +10,7 @@ export default function IndexPage() {
           title
           gatsbyPath(filePath: "/post/{SanityPost.slug__current}")
           id
-          publishedAt(fromNow: true)
+          publishedAt(formatString: "MMMM DD, YYYY")
         }
       }
     }
