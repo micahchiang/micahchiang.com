@@ -36,5 +36,21 @@ module.exports = {
         dataset: 'production',
       },
     },
+    {
+      resolve: 'gatsby-plugin-google-gtag',
+      options:{
+          trackingIds: [
+            "G-9RE7HPXKDH",
+          ],
+          gtagConfig: { 
+            anonymize_ip: true,
+            cookie_express: 0,
+          },
+          pluginConfig: { 
+            head: false,
+            respectDNT: true,
+          }
+        }
+      }
   ],
 };
